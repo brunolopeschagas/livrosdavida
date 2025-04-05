@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livro{% endblock %}
+
+{% block body %}
+    <h1>Livro</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livro.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ livro.nome }}</td>
+            </tr>
+            <tr>
+                <th>Autor</th>
+                <td>{{ livro.autor }}</td>
+            </tr>
+            <tr>
+                <th>Nota</th>
+                <td>{{ livro.nota }}</td>
+            </tr>
+            <tr>
+                <th>Lido</th>
+                <td>{{ livro.lido ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>DataLeitura</th>
+                <td>{{ livro.dataLeitura ? livro.dataLeitura|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livro_index') }}">back to list</a>
+
+    <a href="{{ path('app_livro_edit', {'id': livro.id}) }}">edit</a>
+
+    {{ include('livro/_delete_form.html.twig') }}
+{% endblock %}
