@@ -27,11 +27,13 @@ final class LivroController extends AbstractController
     #[Route('/new', name: 'app_livro_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        
         $livro = new Livro();
         $form = $this->createForm(LivroType::class, $livro);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $livro->setUser($this->getUser());
             $entityManager->persist($livro);
             $entityManager->flush();
 

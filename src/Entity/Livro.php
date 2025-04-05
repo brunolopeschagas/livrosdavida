@@ -29,6 +29,9 @@ class Livro
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dataLeitura = null;
 
+    #[ORM\ManyToOne(User::class)]
+    private User $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,15 @@ class Livro
     {
         $this->dataLeitura = $dataLeitura;
 
+        return $this;
+    }
+
+    public function getUser(): User{
+        return $this->user;
+    }
+
+    public function setUser(User $user):self{
+        $this->user = $user;
         return $this;
     }
 }
