@@ -19,7 +19,8 @@ final class LivroController extends AbstractController
     #[Route(name: 'app_livro_index', methods: ['GET'])]
     public function index(LivroRepository $livroRepository): Response
     {
-        $livros = $livroRepository->findAll();
+        $usuarioLogado = $this->getUser();
+        $livros = $livroRepository->findByUserId($usuarioLogado->getId());
         return $this->render('livro/index.html.twig', [
             'livros' => $livros,
             'total_livros' => count($livros)
