@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block title %}Livros de minha vida
 {% endblock %}
 
 {% block body %}
@@ -11,13 +11,12 @@
 			<a href="{{ path('app_logout') }}">Logout</a>
 		</div>
 		<div>
-			{{ include('livro/index.html.twig', {livros: []}) }}
+			<a href="{{path('app_livro_index')}}">Meus livros</a>
 		</div>
 	{% else %}
 		<div class="mb-3">
 			<a href="{{ path('app_register')}}">Registre-se</a>
 			<a href="{{ path('app_login')}}">Login</a>
 		</div>
-
 	{% endif %}
 {% endblock %}

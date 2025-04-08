@@ -10,8 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/livro')]
+#[IsGranted('IS_AUTHENTICATED_FULLY')]
 final class LivroController extends AbstractController
 {
     #[Route(name: 'app_livro_index', methods: ['GET'])]
@@ -27,7 +29,6 @@ final class LivroController extends AbstractController
     #[Route('/new', name: 'app_livro_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        
         $livro = new Livro();
         $form = $this->createForm(LivroType::class, $livro);
         $form->handleRequest($request);
