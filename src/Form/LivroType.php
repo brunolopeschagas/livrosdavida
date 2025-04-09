@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Livro;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,12 @@ class LivroType extends AbstractType
         $builder
             ->add('nome')
             ->add('autor')
-            ->add('nota')
+            ->add('nota', IntegerType::class, [
+                'attr' => [
+                    'min' => 0,
+                    'max' => 5
+                ]
+            ])
             ->add('lido')
             ->add('dataLeitura', null, [
                 'widget' => 'single_text',

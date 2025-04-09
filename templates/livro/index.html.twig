@@ -4,22 +4,17 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Livros</h1>
-	<p>
-		Livros encontrados:
-		{{total_livros}}
-	</p>
-
+	<h1>Livros ({{total_livros}})</h1>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
+				<th>#</th>
 				<th>Nome</th>
 				<th>Autor</th>
 				<th>Nota</th>
 				<th>Lido</th>
-				<th>DataLeitura</th>
-				<th>actions</th>
+				<th>Lido em</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,11 +24,11 @@
 					<td>{{ livro.nome }}</td>
 					<td>{{ livro.autor }}</td>
 					<td>{{ livro.nota }}</td>
-					<td>{{ livro.lido ? 'Yes' : 'No' }}</td>
-					<td>{{ livro.dataLeitura ? livro.dataLeitura|date('Y-m-d') : '' }}</td>
+					<td>{{ livro.lido ? 'V' : '' }}</td>
+					<td>{{ livro.dataLeitura ? livro.dataLeitura|date('d/m/Y') : '' }}</td>
 					<td>
-						<a href="{{ path('app_livro_show', {'id': livro.id}) }}">show</a>
-						<a href="{{ path('app_livro_edit', {'id': livro.id}) }}">edit</a>
+						<a href="{{ path('app_livro_show', {'id': livro.id}) }}">Ver</a>
+						<a href="{{ path('app_livro_edit', {'id': livro.id}) }}">Editar</a>
 					</td>
 				</tr>
 			{% else %}
@@ -48,5 +43,5 @@
 		{{total_livros}}
 	</p>
 
-	<a href="{{ path('app_livro_new') }}">Create new</a>
+	<a href="{{ path('app_livro_new') }}">Novo livro</a>
 {% endblock %}
